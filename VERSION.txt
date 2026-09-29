@@ -1,4 +1,5 @@
-Black Pearl TV V1
+Black Pearl TV V1 - Shield startup fix
 Package: de.heimkinonerds.blackpearl.debug
-Source build commit: 73d049a2b87325c8349e0624760ba1c63aaffb51
+Source build commit: 0eca411b55d61f7906c918d2bba135a5200cccf1
+Fix: startup background no longer rasterizes an intrinsic-size-less shape drawable
 3D playback: deferred
