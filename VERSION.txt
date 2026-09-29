@@ -1,0 +1,4 @@
+Black Pearl TV V1
+Package: de.heimkinonerds.blackpearl.debug
+Source build commit: 73d049a2b87325c8349e0624760ba1c63aaffb51
+3D playback: deferred
