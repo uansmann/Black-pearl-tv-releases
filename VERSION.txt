@@ -1,5 +1,8 @@
-Black Pearl TV V1 - Shield startup fix
+Black Pearl TV - Final Theme Build
 Package: de.heimkinonerds.blackpearl.debug
-Source build commit: 0eca411b55d61f7906c918d2bba135a5200cccf1
-Fix: startup background no longer rasterizes an intrinsic-size-less shape drawable
+Source build commit: c08f447c531226f53b9e57188cd0621e053b47e2
+Theme: Black Pearl final home design based on target mockup
+Sidebar: Home / Movies / Collections / Continue Watching / Demo Scenes / Settings
+Hero: dynamic Jellyfin backdrop, metadata and media badges
+Player OSD: Black Pearl themed
 3D playback: deferred
