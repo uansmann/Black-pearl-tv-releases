@@ -1,0 +1,55 @@
+name: Publish custom Black Pearl frontend
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/publish-custom-frontend.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Download custom frontend build
+        env:
+          SOURCE_ZIP_URL: "https://sdmntprnortheu.oaiusercontent.com/files/00000000-8a74-81f4-a270-1c759317c765/raw?se=2026-09-30T08%3A52%3A26Z&sp=r&sv=2026-02-06&sr=b&scid=9cde49b9-2aa7-560c-92f8-ceda22ca5bca&skoid=a0b9f82a-c86e-4064-a822-2aa38890bb37&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-30T03%3A51%3A21Z&ske=2026-10-01T03%3A51%3A21Z&sks=b&skv=2026-02-06&sig=Mw5KO6IBX8ftt8jALYpEv0i4E3LnJDx6q1fQvryiZxs%3D"
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 "$SOURCE_ZIP_URL" --output /tmp/black-pearl-custom.zip
+          rm -rf /tmp/black-pearl-custom
+          mkdir -p /tmp/black-pearl-custom
+          unzip -q /tmp/black-pearl-custom.zip -d /tmp/black-pearl-custom
+          find /tmp/black-pearl-custom -maxdepth 2 -type f -print
+
+      - name: Replace public APK
+        run: |
+          set -euo pipefail
+          APK="$(find /tmp/black-pearl-custom -type f -name '*.apk' | head -1)"
+          test -n "$APK"
+          cp "$APK" BlackPearl-TV.apk
+          sha256sum BlackPearl-TV.apk > BlackPearl-TV.sha256
+          cat > VERSION.txt <<'EOF'
+          Black Pearl TV - Custom Compose Frontend
+          Package: de.heimkinonerds.blackpearl.debug
+          Source build commit: b1fd7f4bc32340e1a5246d02ebc5d7cf18a48051
+          Home: full custom Compose frontend (no Jellyfin Leanback rows)
+          Layout: fixed Black Pearl sidebar + dynamic hero + custom poster carousels
+          Categories: Continue Watching / 4K UHD / 3D Favorites / Demo Scenes / Reference Movies
+          Player: Jellyfin playback engine retained
+          3D playback: deferred
+          EOF
+
+      - name: Commit APK
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add BlackPearl-TV.apk BlackPearl-TV.sha256 VERSION.txt
+          git commit -m "Publish Black Pearl custom frontend APK"
+          git push
