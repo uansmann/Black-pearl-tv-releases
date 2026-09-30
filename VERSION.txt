@@ -1,8 +1,8 @@
-Black Pearl TV - Final Theme Build
+Black Pearl TV - Custom Compose Frontend
 Package: de.heimkinonerds.blackpearl.debug
-Source build commit: c08f447c531226f53b9e57188cd0621e053b47e2
-Theme: Black Pearl final home design based on target mockup
-Sidebar: Home / Movies / Collections / Continue Watching / Demo Scenes / Settings
-Hero: dynamic Jellyfin backdrop, metadata and media badges
-Player OSD: Black Pearl themed
+Source build commit: b1fd7f4bc32340e1a5246d02ebc5d7cf18a48051
+Home: full custom Compose frontend (no Jellyfin Leanback rows)
+Layout: fixed Black Pearl sidebar + dynamic hero + custom poster carousels
+Categories: Continue Watching / 4K UHD / 3D Favorites / Demo Scenes / Reference Movies
+Player: Jellyfin playback engine retained
 3D playback: deferred
