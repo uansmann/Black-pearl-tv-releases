@@ -1,8 +1,12 @@
-Black Pearl TV - Custom Compose Frontend
+Black Pearl TV V2
 Package: de.heimkinonerds.blackpearl.debug
-Source build commit: b1fd7f4bc32340e1a5246d02ebc5d7cf18a48051
-Home: full custom Compose frontend (no Jellyfin Leanback rows)
-Layout: fixed Black Pearl sidebar + dynamic hero + custom poster carousels
-Categories: Continue Watching / 4K UHD / 3D Favorites / Demo Scenes / Reference Movies
-Player: Jellyfin playback engine retained
-3D playback: deferred
+Source build commit: 86cc61457df1cb1baa3b36a35b261fe752c2d1bd
+Changes:
+- removed Powered by Jellyfin from home screen
+- narrower sidebar and larger Black Pearl logo
+- larger Continue Watching posters
+- improved row spacing and section hierarchy
+- stronger antique-gold focus frame
+- refined hero proportions and typography
+- more visible footer skull / ornament
+- 3D playback deferred
