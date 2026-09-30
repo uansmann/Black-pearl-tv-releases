@@ -1,9 +1,12 @@
-Black Pearl TV - Fixed Hero Theme
+Black Pearl TV V4 - config aware
 Package: de.heimkinonerds.blackpearl.debug
-Source build commit: cc3c46ae01b280a8d1614500a5ede985324fe418
+Source build commit: e308e7dbf8a69f3e5b7d8c38ace3a82b7f82e4e4
 Changes:
-- fixed Black Pearl branded hero on Home
-- hero no longer changes with selected movie
-- fixed sidebar, fixed content slots and Black Pearl ornamentation retained
-- Powered by Jellyfin remains removed from Home
+- fixed Black Pearl hero: selected films no longer replace any part of the hero
+- sidebar libraries are generated dynamically from Jellyfin user views/configuration
+- Movies / Series / Music / 3D / Collections / custom libraries appear only when configured
+- Continue Watching appears only when enabled in Jellyfin home settings and content exists
+- Home rows appear only when configured and non-empty
+- lower-left sidebar now includes static skull artwork plus slogan
+- Settings remains always available
 - 3D playback deferred
