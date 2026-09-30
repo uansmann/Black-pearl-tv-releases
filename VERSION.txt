@@ -1,10 +1,11 @@
-Black Pearl TV - Dynamic Config Build
+Black Pearl TV V5 - Pirate Wallpaper Theme
 Package: de.heimkinonerds.blackpearl.debug
-Source build commit: e308e7dbf8a69f3e5b7d8c38ace3a82b7f82e4e4
+Source build commit: 52c042619264ccd30c010eeafdc1d4283df46894
 Changes:
-- sidebar follows actual Jellyfin user libraries/views
-- Continue Watching only appears when configured and populated
-- Recently Added only appears when configured and populated
-- fixed Black Pearl home hero retained
-- only configured/used content is shown
+- full right-side Black Pearl wallpaper instead of black empty area
+- themed pirate poster frames for all covers
+- stronger golden focus frame
+- enlarged lower-left sidebar decoration
+- dynamic sidebar based on Jellyfin user libraries/config
+- Continue Watching and Recently Added only when configured and populated
 - 3D playback deferred
