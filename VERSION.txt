@@ -1,14 +1,9 @@
-Black Pearl TV V3
+Black Pearl TV - Fixed Hero Theme
 Package: de.heimkinonerds.blackpearl.debug
-Source build commit: b52b62c68eda9faf6d636ee59906cae1c7bdc9ab
+Source build commit: cc3c46ae01b280a8d1614500a5ede985324fe418
 Changes:
-- rebuilt home screen as a real Compose TV interface
-- Black Pearl logo and skull artwork integrated as native app assets
-- cinematic 220dp sidebar with Home, Movies, Series, Collections, Continue Watching, 3D Movies, Music and Settings
-- dynamic Jellyfin backdrop hero with Black Pearl skull treatment
-- real Play / Resume and More Info actions
-- two-row cinema layout with Continue Watching and Recently Added
-- antique-gold D-pad focus frames and playback progress
-- search and clock integrated at the top right
-- Powered by Jellyfin remains removed from the home screen
-- 3D playback engine remains deferred for later device testing
+- fixed Black Pearl branded hero on Home
+- hero no longer changes with selected movie
+- fixed sidebar, fixed content slots and Black Pearl ornamentation retained
+- Powered by Jellyfin remains removed from Home
+- 3D playback deferred
