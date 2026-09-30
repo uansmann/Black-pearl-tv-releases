@@ -1,0 +1,61 @@
+name: Publish Black Pearl V3
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/publish-v3.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Download V3 build
+        env:
+          SOURCE_ZIP_URL: "https://sdmntprnortheu.oaiusercontent.com/files/00000000-c7d0-81f4-866f-0f9bda6e9b9f/raw?se=2026-09-30T10%3A31%3A57Z&sp=r&sv=2026-02-06&sr=b&scid=049d540e-93ce-53a1-8eef-19456de0f236&skoid=5c9dda00-298b-4376-81e9-b4568c8a3c0f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-30T07%3A22%3A10Z&ske=2026-10-01T07%3A22%3A10Z&sks=b&skv=2026-02-06&sig=fgzeYgVi7d/D9NCIvPgxQdtOVwM%2BuycnJEsPtFljf%2BY%3D"
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 "$SOURCE_ZIP_URL" --output /tmp/black-pearl-v3.zip
+          rm -rf /tmp/black-pearl-v3
+          mkdir -p /tmp/black-pearl-v3
+          unzip -q /tmp/black-pearl-v3.zip -d /tmp/black-pearl-v3
+          find /tmp/black-pearl-v3 -maxdepth 2 -type f -print
+
+      - name: Replace stable public APK
+        run: |
+          set -euo pipefail
+          APK="$(find /tmp/black-pearl-v3 -type f -name '*.apk' | head -1)"
+          test -n "$APK"
+          cp "$APK" BlackPearl-TV.apk
+          sha256sum BlackPearl-TV.apk > BlackPearl-TV.sha256
+          cat > VERSION.txt <<'EOF'
+          Black Pearl TV V3
+          Package: de.heimkinonerds.blackpearl.debug
+          Source build commit: b52b62c68eda9faf6d636ee59906cae1c7bdc9ab
+          Changes:
+          - rebuilt home screen as a real Compose TV interface
+          - Black Pearl logo and skull artwork integrated as native app assets
+          - cinematic 220dp sidebar with Home, Movies, Series, Collections, Continue Watching, 3D Movies, Music and Settings
+          - dynamic Jellyfin backdrop hero with Black Pearl skull treatment
+          - real Play / Resume and More Info actions
+          - two-row cinema layout with Continue Watching and Recently Added
+          - antique-gold D-pad focus frames and playback progress
+          - search and clock integrated at the top right
+          - Powered by Jellyfin remains removed from the home screen
+          - 3D playback engine remains deferred for later device testing
+          EOF
+
+      - name: Commit V3 APK
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add BlackPearl-TV.apk BlackPearl-TV.sha256 VERSION.txt
+          git commit -m "Publish Black Pearl TV V3"
+          git push
