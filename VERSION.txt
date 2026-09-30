@@ -1,12 +1,10 @@
-Black Pearl TV V4 - config aware
+Black Pearl TV - Dynamic Config Build
 Package: de.heimkinonerds.blackpearl.debug
 Source build commit: e308e7dbf8a69f3e5b7d8c38ace3a82b7f82e4e4
 Changes:
-- fixed Black Pearl hero: selected films no longer replace any part of the hero
-- sidebar libraries are generated dynamically from Jellyfin user views/configuration
-- Movies / Series / Music / 3D / Collections / custom libraries appear only when configured
-- Continue Watching appears only when enabled in Jellyfin home settings and content exists
-- Home rows appear only when configured and non-empty
-- lower-left sidebar now includes static skull artwork plus slogan
-- Settings remains always available
+- sidebar follows actual Jellyfin user libraries/views
+- Continue Watching only appears when configured and populated
+- Recently Added only appears when configured and populated
+- fixed Black Pearl home hero retained
+- only configured/used content is shown
 - 3D playback deferred
