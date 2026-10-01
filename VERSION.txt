@@ -1,14 +1,15 @@
-Black Pearl TV V6.3 - Ornate Auth UI
+Black Pearl TV V6.4 - Full Wallpaper + Ornate Cover Overlays
 Package: de.heimkinonerds.blackpearl.debug
-Version name: 6.0.3-ornate-auth-ui
-Version code: 60003
+Version name: 6.0.4-ornate-wallpaper
+Version code: 60004
 Source branch: design/ornate-v6
-Source commit: 9631d4f375abc38e3a612464613f7c04803e9306
-GitHub Actions run: 36824242901
+Source commit: 2993dd2fc66e299c965cef0a9ca0fae89b17cebf
+GitHub Actions run: 36837085397
 Fixes:
-- keeps V6.2 authenticated currentUser gate after Quick Connect
-- removes the 64x64 wallpaper and frame placeholders completely
-- restores validated Black Pearl hero artwork
-- restores dynamic Jellyfin poster rows
-- uses native ornate pirate frames with gold focus treatment
-- restores dark Black Pearl sidebar with logo, navigation and skull decoration
+- keeps authenticated currentUser gate after Quick Connect
+- restores the complete 1920x1080 Black Pearl wallpaper asset
+- renders wallpaper full-area behind header and content rows
+- content overlay is translucent so wallpaper remains visible
+- replaces simplified cover borders with real transparent ornate pirate overlays
+- separate antique-gold normal frame and bright-glow focused frame
+- keeps dynamic Jellyfin covers and library configuration
