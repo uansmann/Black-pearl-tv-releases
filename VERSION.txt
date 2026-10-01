@@ -1,15 +1,17 @@
-Black Pearl TV V6.5 - Unified 4K Wallpaper
+Black Pearl TV V6.6 - Seamless Split 4K Design
 Package: de.heimkinonerds.blackpearl.debug
-Version name: 6.0.5-ornate-4k
-Version code: 60005
+Version name: 6.0.6-ornate-split4k
+Version code: 60006
 Source branch: design/ornate-v6
-Source commit: 2fcd999ee5da7d1313cd0fac9be4a05dfe0145d9
-GitHub Actions run: 36857271226
-Changes:
-- unified 4K 3840x2160 wallpaper across header and content
-- seamless gradient transition instead of visible two-part split
-- removes duplicate branding/slogan text from sidebar
-- brighter and larger lower-left skull decoration
-- keeps ornate cover overlays and focused glow
-- keeps Quick Connect authenticated-home fix
-- keeps dynamic Jellyfin covers and library configuration
+Source commit: 3e590d85fc2dea45d73f49343169df7b3af62f5e
+GitHub Actions run: 36873000628
+Design:
+- one single master artwork upscaled to 3840x2160
+- exact 30/70 vertical split at 1152px
+- left sidebar asset: 1152x2160
+- right content wallpaper: 2688x2160
+- both assets originate from the identical master image
+- separate black_pearl_skull overlay removed
+- text-free pirate artwork below navigation/content
+- ornate cover overlays and focused glow retained
+- Quick Connect authenticated-home fix retained
