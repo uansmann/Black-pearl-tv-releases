@@ -1,7 +1,14 @@
-Black Pearl TV V6.2 - Authenticated Home Gate
+Black Pearl TV V6.3 - Ornate Auth UI
+Package: de.heimkinonerds.blackpearl.debug
+Version name: 6.0.3-ornate-auth-ui
+Version code: 60003
 Source branch: design/ornate-v6
-Source build commit: 67438f2594e986dc0380e37e2e6d75fb938c8079
-GitHub Actions run: 36821743269
-Fix:
-- waits for a non-null authenticated Jellyfin currentUser before initializing the custom home
-- matches the upstream Jellyfin HomeRowsFragment login/session readiness behavior
+Source commit: 9631d4f375abc38e3a612464613f7c04803e9306
+GitHub Actions run: 36824242901
+Fixes:
+- keeps V6.2 authenticated currentUser gate after Quick Connect
+- removes the 64x64 wallpaper and frame placeholders completely
+- restores validated Black Pearl hero artwork
+- restores dynamic Jellyfin poster rows
+- uses native ornate pirate frames with gold focus treatment
+- restores dark Black Pearl sidebar with logo, navigation and skull decoration
