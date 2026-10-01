@@ -1,0 +1,59 @@
+name: Publish Black Pearl V6.7
+
+on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/publish-v6-7.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Download V6.7 full APK build
+        env:
+          SOURCE_ZIP_URL: "https://sdmntprnortheu.oaiusercontent.com/files/00000000-5aa0-81f4-b111-3d1c463981b1/raw?se=2026-10-01T14%3A33%3A36Z&sp=r&sv=2026-02-06&sr=b&scid=735d1d49-53bb-5be3-81fb-e96ee411dad4&skoid=5c9dda00-298b-4376-81e9-b4568c8a3c0f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-01T09%3A39%3A32Z&ske=2026-10-02T09%3A39%3A32Z&sks=b&skv=2026-02-06&sig=WoVDjBp%2BoP09PRg54hfQvN4ovDWuNWP3sNvnE8zYSW0%3D"
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 "$SOURCE_ZIP_URL" --output /tmp/v67.zip
+          rm -rf /tmp/v67
+          mkdir -p /tmp/v67
+          unzip -q /tmp/v67.zip -d /tmp/v67
+          find /tmp/v67 -type f -maxdepth 5 -print
+
+      - name: Replace stable public APK
+        run: |
+          set -euo pipefail
+          APK="$(find /tmp/v67 -type f -name '*.apk' | head -1)"
+          test -n "$APK"
+          cp "$APK" BlackPearl-TV.apk
+          sha256sum BlackPearl-TV.apk > BlackPearl-TV.sha256
+          cat > VERSION.txt <<'EOF'
+          Black Pearl TV V6.7 - Configurable Home + Header Title
+          Package: de.heimkinonerds.blackpearl.debug
+          Version name: 6.0.7-home-sections-logo
+          Version code: 60007
+          Source branch: design/ornate-v6
+          Source commit: 8ff537effd0ff6cf4d59acb0e7aa207125000e2c
+          GitHub Actions run: 36876009137
+          Changes:
+          - restores BLACK PEARL / CINEMA title in the header without the slogan
+          - keeps the seamless split 4K background design
+          - respects Jellyfin Startseite section order
+          - supports Recently Added, Continue Watching, Next Up, My Media, My Media small and Continue Listening
+          - reloads home data when returning from Startseite settings
+          - keeps Quick Connect authenticated-home fix
+          EOF
+
+      - name: Commit V6.7 stable APK
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add BlackPearl-TV.apk BlackPearl-TV.sha256 VERSION.txt
+          git commit -m "Publish Black Pearl TV V6.7 configurable home and header title"
+          git push
