@@ -1,0 +1,59 @@
+name: Publish Black Pearl V6.13
+
+on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/publish-v6-13.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Download V6.13 full APK build
+        env:
+          SOURCE_ZIP_URL: "https://sdmntprnortheu.oaiusercontent.com/files/00000000-7a50-81f4-af76-9642b2229047/raw?se=2026-10-01T17%3A53%3A28Z&sp=r&sv=2026-02-06&sr=b&scid=92779246-45f3-58b0-a821-ba56a25657fd&skoid=5c9dda00-298b-4376-81e9-b4568c8a3c0f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-01T10%3A03%3A18Z&ske=2026-10-02T10%3A03%3A18Z&sks=b&skv=2026-02-06&sig=qsueYk0DTOjQ%2BZq2QbdTNbjl7K4ohXeVNGEIjR7K4MA%3D"
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 "$SOURCE_ZIP_URL" --output /tmp/v613.zip
+          rm -rf /tmp/v613
+          mkdir -p /tmp/v613
+          unzip -q /tmp/v613.zip -d /tmp/v613
+          find /tmp/v613 -type f -maxdepth 5 -print
+
+      - name: Replace stable public APK
+        run: |
+          set -euo pipefail
+          APK="$(find /tmp/v613 -type f -name '*.apk' | head -1)"
+          test -n "$APK"
+          cp "$APK" BlackPearl-TV.apk
+          sha256sum BlackPearl-TV.apk > BlackPearl-TV.sha256
+          cat > VERSION.txt <<'EOF'
+          Black Pearl TV V6.13 - Small Logo Wallpaper
+          Package: de.heimkinonerds.blackpearl.debug
+          Version name: 6.0.13-small-logo-wallpaper
+          Version code: 60013
+          Source branch: design/ornate-v6
+          Source commit: 81b0fc6cfa0ddc22ab967b518b8fb90722b7f841
+          GitHub Actions run: 36901514164
+          Changes:
+          - BLACK PEARL / CINEMA title reduced substantially
+          - title moved into the free sky area and clear of the ship sails
+          - no slogan under the logo
+          - keeps 30/70 seamless split theme
+          - keeps configurable Jellyfin home sections
+          - keeps ornate cover overlays and Quick Connect auth gate
+          EOF
+
+      - name: Commit V6.13 stable APK
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add BlackPearl-TV.apk BlackPearl-TV.sha256 VERSION.txt
+          git commit -m "Publish Black Pearl TV V6.13 smaller header logo"
+          git push
