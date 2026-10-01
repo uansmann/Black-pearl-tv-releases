@@ -1,11 +1,7 @@
-Black Pearl TV V5 - Pirate Wallpaper Theme
-Package: de.heimkinonerds.blackpearl.debug
-Source build commit: 52c042619264ccd30c010eeafdc1d4283df46894
-Changes:
-- full right-side Black Pearl wallpaper instead of black empty area
-- themed pirate poster frames for all covers
-- stronger golden focus frame
-- enlarged lower-left sidebar decoration
-- dynamic sidebar based on Jellyfin user libraries/config
-- Continue Watching and Recently Added only when configured and populated
-- 3D playback deferred
+Black Pearl TV V6.1 - Safe Home Fix
+Source branch: design/ornate-v6
+Source build commit: 407bd297a1a45a2e099833be6a3164bdc319d817
+GitHub Actions run: 36797493811
+Purpose:
+- V6.1 safe-home fixes after Quick Connect login
+- supersedes commits 703532200ed4c83142bd43db539bf185982957b3 and c100235cd239c3efd02e5c293144e9b7fc040575
