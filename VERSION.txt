@@ -1,17 +1,14 @@
-Black Pearl TV V6.6 - Seamless Split 4K Design
+Black Pearl TV V6.7 - Configurable Home + Header Title
 Package: de.heimkinonerds.blackpearl.debug
-Version name: 6.0.6-ornate-split4k
-Version code: 60006
+Version name: 6.0.7-home-sections-logo
+Version code: 60007
 Source branch: design/ornate-v6
-Source commit: 3e590d85fc2dea45d73f49343169df7b3af62f5e
-GitHub Actions run: 36873000628
-Design:
-- one single master artwork upscaled to 3840x2160
-- exact 30/70 vertical split at 1152px
-- left sidebar asset: 1152x2160
-- right content wallpaper: 2688x2160
-- both assets originate from the identical master image
-- separate black_pearl_skull overlay removed
-- text-free pirate artwork below navigation/content
-- ornate cover overlays and focused glow retained
-- Quick Connect authenticated-home fix retained
+Source commit: 8ff537effd0ff6cf4d59acb0e7aa207125000e2c
+GitHub Actions run: 36876009137
+Changes:
+- restores BLACK PEARL / CINEMA title in the header without the slogan
+- keeps the seamless split 4K background design
+- respects Jellyfin Startseite section order
+- supports Recently Added, Continue Watching, Next Up, My Media, My Media small and Continue Listening
+- reloads home data when returning from Startseite settings
+- keeps Quick Connect authenticated-home fix
