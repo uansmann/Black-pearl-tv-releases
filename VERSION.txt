@@ -1,14 +1,14 @@
-Black Pearl TV V6.7 - Configurable Home + Header Title
+Black Pearl TV V6.12 - Approved Black Pearl Cinema Logo
 Package: de.heimkinonerds.blackpearl.debug
-Version name: 6.0.7-home-sections-logo
-Version code: 60007
+Version name: 6.0.12-approved-logo
+Version code: 60012
 Source branch: design/ornate-v6
-Source commit: 8ff537effd0ff6cf4d59acb0e7aa207125000e2c
-GitHub Actions run: 36876009137
+Source commit: d0ea7ae7ddc83bb4ffb91e09652c054c04414318
+GitHub Actions run: 36894403577
 Changes:
-- restores BLACK PEARL / CINEMA title in the header without the slogan
-- keeps the seamless split 4K background design
-- respects Jellyfin Startseite section order
-- supports Recently Added, Continue Watching, Next Up, My Media, My Media small and Continue Listening
-- reloads home data when returning from Startseite settings
-- keeps Quick Connect authenticated-home fix
+- approved BLACK PEARL / CINEMA artwork baked directly into the 4K master wallpaper
+- no runtime Compose header text
+- no slogan under the logo
+- keeps 30/70 seamless split theme
+- keeps configurable Jellyfin home sections
+- keeps ornate cover overlays and Quick Connect auth gate
