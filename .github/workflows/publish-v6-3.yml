@@ -1,0 +1,59 @@
+name: Publish Black Pearl V6.3
+
+on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/publish-v6-3.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Download V6.3 full APK build
+        env:
+          SOURCE_ZIP_URL: "https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-8ec8-8210-8a09-c1989dd4fcf8/raw?se=2026-10-01T06%3A30%3A23Z&sp=r&sv=2026-02-06&sr=b&scid=37d82798-accb-5390-846c-bae617fbcf0c&skoid=a0b9f82a-c86e-4064-a822-2aa38890bb37&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-01T04%3A53%3A17Z&ske=2026-10-02T04%3A53%3A17Z&sks=b&skv=2026-02-06&sig=nwcYQcfndjWh9n/NJcYKQMTorjj1FVFhtjG6Pdv7Amk%3D"
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 "$SOURCE_ZIP_URL" --output /tmp/v63.zip
+          rm -rf /tmp/v63
+          mkdir -p /tmp/v63
+          unzip -q /tmp/v63.zip -d /tmp/v63
+          find /tmp/v63 -type f -maxdepth 5 -print
+
+      - name: Replace stable public APK
+        run: |
+          set -euo pipefail
+          APK="$(find /tmp/v63 -type f -name '*.apk' | head -1)"
+          test -n "$APK"
+          cp "$APK" BlackPearl-TV.apk
+          sha256sum BlackPearl-TV.apk > BlackPearl-TV.sha256
+          cat > VERSION.txt <<'EOF'
+          Black Pearl TV V6.3 - Ornate Auth UI
+          Package: de.heimkinonerds.blackpearl.debug
+          Version name: 6.0.3-ornate-auth-ui
+          Version code: 60003
+          Source branch: design/ornate-v6
+          Source commit: 9631d4f375abc38e3a612464613f7c04803e9306
+          GitHub Actions run: 36824242901
+          Fixes:
+          - keeps V6.2 authenticated currentUser gate after Quick Connect
+          - removes the 64x64 wallpaper and frame placeholders completely
+          - restores validated Black Pearl hero artwork
+          - restores dynamic Jellyfin poster rows
+          - uses native ornate pirate frames with gold focus treatment
+          - restores dark Black Pearl sidebar with logo, navigation and skull decoration
+          EOF
+
+      - name: Commit V6.3 stable APK
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add BlackPearl-TV.apk BlackPearl-TV.sha256 VERSION.txt
+          git commit -m "Publish Black Pearl TV V6.3 ornate UI fix"
+          git push
