@@ -1,13 +1,13 @@
-Black Pearl TV V6.12 - Approved Black Pearl Cinema Logo
+Black Pearl TV V6.13 - Small Logo Wallpaper
 Package: de.heimkinonerds.blackpearl.debug
-Version name: 6.0.12-approved-logo
-Version code: 60012
+Version name: 6.0.13-small-logo-wallpaper
+Version code: 60013
 Source branch: design/ornate-v6
-Source commit: d0ea7ae7ddc83bb4ffb91e09652c054c04414318
-GitHub Actions run: 36894403577
+Source commit: 81b0fc6cfa0ddc22ab967b518b8fb90722b7f841
+GitHub Actions run: 36901514164
 Changes:
-- approved BLACK PEARL / CINEMA artwork baked directly into the 4K master wallpaper
-- no runtime Compose header text
+- BLACK PEARL / CINEMA title reduced substantially
+- title moved into the free sky area and clear of the ship sails
 - no slogan under the logo
 - keeps 30/70 seamless split theme
 - keeps configurable Jellyfin home sections
