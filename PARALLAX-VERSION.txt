@@ -1,0 +1,18 @@
+Black Pearl TV Stage 2 2.5D Parallax Test
+Version name: 6.1.0-parallax-stage2
+Version code: 60100
+Source branch: experiment/2.5d-parallax
+Source commit: 596ad12732a66af914b36dfe92aa8230238e23c6
+GitHub Actions run: 36980191543
+Final APK Design only branch remains unchanged.
+Layers:
+- base sky/map background with reveal-area inpainting
+- environment / sea / distant rocks
+- Black Pearl ship
+- upper treasure + skull foreground
+- lower skull / crossbones foreground
+Behaviour:
+- focus-driven horizontal and vertical parallax
+- progressively stronger movement by depth
+- 1.3 second layered launch settle
+- focused covers retain ornate scale/glow treatment
